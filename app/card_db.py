@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import sqlite3
 
 import click
@@ -5,6 +7,7 @@ from flask import current_app, g
 from flask.cli import with_appcontext
 
 def get_db():
+    '''Gets the database, fix line 13, it is causing a key value error'''
     if 'db' not in g:
         g.db = sqlite3.connect(
             current_app.config['DATABASE'],
@@ -29,7 +32,7 @@ def init_db():
 @click.command('init-db')
 @with_appcontext
 def init_db_command():
-    #clear existing data and create new tables
+    '''clear existing data and create new tables'''
     init_db()
     click.echo('Initialized the database')
     

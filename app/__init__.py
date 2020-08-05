@@ -1,10 +1,11 @@
 import os
 from flask import Flask, request, jsonify
 from . import card_db
+import logging
 app = Flask(__name__, instance_relative_config=True)
 
 def create_app(test_config=None):
-    #create and configure app
+    '''create and configure app'''
     
     app.config.from_mapping(
         SECRET_KEY='dev',
@@ -23,8 +24,11 @@ def create_app(test_config=None):
     except OSError:
         pass
     
-    
-    card_db.init_app(app)
+    try:
+        card_db.init_app(app)
+    except KeyError:
+        logging.exception('There was a database key error' )
+        raise
     
     return app
 
