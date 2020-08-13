@@ -1,8 +1,14 @@
+# -*- coding: utf-8 -*-
 import os
 from flask import Flask, request, jsonify
 from . import card_db
 import logging
+<<<<<<< Updated upstream
+=======
+import json
+>>>>>>> Stashed changes
 app = Flask(__name__, instance_relative_config=True)
+
 
 def create_app(test_config=None):
     '''create and configure app'''
@@ -38,12 +44,19 @@ def create_app(test_config=None):
 def api_all():
     db = card_db.get_db()
     if request.method == 'POST':
-        card_id = request.args.get('card_id')
-        date_time = request.args.get('date_time')
+
+        card_id = request.json.get('card_id')
+        date_time = request.json.get('date_time')
+        print(card_id)
+        print(date_time)
+
         db.execute(
-            'INSERT INTO card_scans (card_id, scan_timestamp) VALUES (?, ?)',
-            (card_id, date_time))
-        db.commit()
+            "INSERT INTO card_scans (card_id, scan_timestamp) VALUES (?, ?)",
+            [card_id, date_time]
+        )
+
+        db.execute()
+        db.close()
     
 
 

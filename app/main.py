@@ -4,6 +4,7 @@
 
 import beanstalkc
 import datetime
+<<<<<<< Updated upstream
 from . import monitor_service, beanstalkd_connection
 import smtplib
 
@@ -27,19 +28,50 @@ except ConnectionError:
         smtpObj.sendmail(sender, recievers, message)
     except SMTPException:
         print('Errpr: Unable to send email')
+=======
+from monitor_service import *
+from beanstalkd_connection import *
+import smtplib
 
 
+def init():
+    '''Takes the event ID and passes it along to the API'''
 
+    print("Please enter the event ID:")
+    event_id = raw_input()
+
+    scan(event_id)
+
+
+>>>>>>> Stashed changes
+
+
+def scan(event_id):
+    '''When a card is scanned as keyboard input, the current time is recorded and sent to beanstalkd service'''
+
+<<<<<<< Updated upstream
 def scan():
 '''When a card is scanned as keyboard input, the current time is recorded and sent to beanstalkd service'''
+=======
+    beanstalk = connection() #connect to beanstalkd
+
+>>>>>>> Stashed changes
     while (1):
         print("Started card scanning")
         card_data = raw_input() 
         time_now = datetime.datetime.now()
         current_date_time = time_now.strftime("%m/%d/%Y, %H:%M:%S")
+<<<<<<< Updated upstream
         data = card_data + ":" + current_date_time
         beanstalk.put(data)
         
 if __name__== '__main__':    
     scan()    
+=======
+        data = card_data + "!" + current_date_time
+        beanstalk.put(data)
+        
+if __name__== '__main__':    
+    init()    
+>>>>>>> Stashed changes
 

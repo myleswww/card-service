@@ -5,12 +5,21 @@ import sqlite3
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
+from pathlib import Path
 
 def get_db():
     '''Gets the database, fix line 13, it is causing a key value error'''
+<<<<<<< Updated upstream
+=======
+
+    data_folder = Path("/home/pi/card-scan-service/instance/") #make a path using pathlib
+
+    file_to_open = data_folder / "app.sqlite" #the database file.
+
+>>>>>>> Stashed changes
     if 'db' not in g:
         g.db = sqlite3.connect(
-            current_app.config['DATABASE'],
+            file_to_open,
             detect_types=sqlite3.PARSE_DECLTYPES
             )
         g.db.row_factory = sqlite3.Row
