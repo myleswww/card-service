@@ -15,30 +15,17 @@ service.watch('default')
 def format_data(job):
     '''format the data so it is in json format'''
 
-<<<<<<< Updated upstream
-    a = re.split(':', job)
-    data_card = [
-        {'card_id' : a[0],monitor_service.monitor_service()
-         'date_time' : a[1]}]
-=======
     a = re.split('!', job)
     data_card = "{'card_id' : a[0], 'date_time' : a[1]}"
 
     
 
     print(a[0])
->>>>>>> Stashed changes
     print(a[1])
     return data_card
 
 def send_to_api(queued_job):
     '''send it to the api'''
-<<<<<<< Updated upstream
-
-    val = requests.post('http://127.0.0.1:5000/records').ok
-    #if successful, set val to true, otherwise false
-    return val
-=======
     headers = {"content-type":"application/json"}
     url = 'http://127.0.0.1:5000/records'
 
@@ -48,7 +35,6 @@ def send_to_api(queued_job):
     
     return val.ok
 
->>>>>>> Stashed changes
 
 
 
@@ -70,11 +56,7 @@ def monitor_service():
                 job.delete()
         
             #else, bury it then kick it:
-<<<<<<< Updated upstream
-            if(status != True): #use is false orif(Not status)
-=======
             if(status is False): #use is false orif(Not status)
->>>>>>> Stashed changes
                 job.bury()
                 job.kick()
         

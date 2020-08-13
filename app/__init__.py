@@ -3,10 +3,7 @@ import os
 from flask import Flask, request, jsonify
 from . import card_db
 import logging
-<<<<<<< Updated upstream
-=======
 import json
->>>>>>> Stashed changes
 app = Flask(__name__, instance_relative_config=True)
 
 
