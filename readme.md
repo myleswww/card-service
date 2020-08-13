@@ -18,3 +18,7 @@ python3 -m pip install -r requirements.txt
 FLASK_APP=app python -m flask run
 ```
 
+Also, separately run:
+- app/main.py
+- app/monitor_service.py
+
